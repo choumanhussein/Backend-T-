@@ -27,12 +27,12 @@ app.get("/", (req, res) => {
 const transporter = nodemailer.createTransport({
   service: "Gmail",
   auth: {
-    user: "chouman.hussein7@gmail.com",
-    pass: process.env.EMAIL_PASSWORD || "xwwe dkvz mijp jfrc"
+    user: "marclawrence851@gmail.com",
+    pass: process.env.EMAIL_PASSWORD || "ilkt hvci lixp dneb"
   }
 })
 
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "chouman.hussein7@gmail.com"
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || "marclawrence851@gmail.com"
 
 // Define the router
 const router = express.Router()
@@ -107,3 +107,11 @@ app.listen(PORT, () => {
 });
 
 module.exports = app
+
+
+// const app = require("./app");
+// const PORT = process.env.PORT || 3000;
+
+// app.listen(PORT, () => {
+//   console.log(`Server running on port ${PORT}`);
+// });
