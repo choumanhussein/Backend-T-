@@ -71,7 +71,7 @@ router.post("/", (req, res) => {
   transporter.sendMail(adminMailOptions, (error, info) => {
     if (error) {
       console.error(
-        "Erreur lors de l'envoi de l'e-mail à l'administrateur:",
+        "Erreur lors de l'envoi de l'e-mail à l'administrateur :",
         error
       )
       return res.status(500).json({
