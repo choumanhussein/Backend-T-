@@ -18,7 +18,7 @@ app.options("*", cors(corsOptions))
 
 app.use(bodyParser.json())
 
-
+// Route pour afficher "Bienvenue sur l'API"
 app.get("/", (req, res) => {
   res.send("Bienvenue sur l'API")
 })
@@ -57,7 +57,7 @@ router.post("/", (req, res) => {
     to: email,
     subject: "Confirmation de réception de votre message",
     text: `
-      Bonjour, ${nom},
+      Bonjour ${nom},
 
       Je vous remercie d'avoir pris contact avec moi. Votre message a bien été reçu et je vous en remercie.
 
@@ -71,7 +71,7 @@ router.post("/", (req, res) => {
   transporter.sendMail(adminMailOptions, (error, info) => {
     if (error) {
       console.error(
-        "Erreur lors de l'envoi de l'e-mail à l'administrateur :",
+        "Erreur lors de l'envoi de l'e-mail à l'administrateur:",
         error
       )
       return res.status(500).json({
@@ -103,7 +103,7 @@ app.use("/mail-sender", router)
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`)
 });
 
 module.exports = app
