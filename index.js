@@ -57,7 +57,7 @@ router.post("/", (req, res) => {
     to: email,
     subject: "Confirmation de réception de votre message",
     text: `
-      Bonjour ${nom},
+      Bonjour, ${nom},
 
       Je vous remercie d'avoir pris contact avec moi. Votre message a bien été reçu et je vous en remercie.
 
