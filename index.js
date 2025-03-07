@@ -101,17 +101,43 @@ router.post("/", (req, res) => {
 
 app.use("/mail-sender", router)
 
+// ===== GESTION DES ERREURS =====
+
+// Middleware pour les routes non trouvées (404)
+app.use((req, res, next) => {
+  // Pour les API, renvoyer un statut 404 avec un message JSON
+  if (req.path.startsWith('/api/') || req.path.startsWith('/mail-sender/')) {
+    return res.status(404).json({
+      error: "Not Found",
+      message: "La ressource demandée n'existe pas"
+    });
+  }
+  
+  // Pour les autres routes (si vous servez également le front-end)
+  // Rediriger vers la route /404 du front-end
+  res.status(404).redirect('https://marclawrence.vercel.app/404');
+});
+
+// Middleware de gestion des erreurs (500)
+app.use((err, req, res, next) => {
+  console.error("Erreur serveur:", err);
+  
+  // Pour les API, renvoyer un statut 500 avec un message JSON
+  if (req.path.startsWith('/api/') || req.path.startsWith('/mail-sender/')) {
+    return res.status(500).json({
+      error: "Internal Server Error",
+      message: "Une erreur interne s'est produite"
+    });
+  }
+  
+  // Pour les autres routes (si vous servez également le front-end)
+  // Rediriger vers la route /500 du front-end
+  res.status(500).redirect('https://marclawrence.vercel.app/500');
+});
+
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`)
 });
 
-module.exports = app
-
-
-// const app = require("./app");
-// const PORT = process.env.PORT || 3000;
-
-// app.listen(PORT, () => {
-//   console.log(`Server running on port ${PORT}`);
-// });
+module.exports = app
